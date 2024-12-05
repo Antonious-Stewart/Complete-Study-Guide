@@ -4,11 +4,37 @@ package exercises
 //
 //Problem: Given an unsorted array of integers, sort it in ascending order using Bubble Sort.
 //Edge Cases:
-//Array is already sorted (e.g., [1, 2, 3, 4]).
-//Array is in reverse order (e.g., [4, 3, 2, 1]).
-//Array contains duplicate elements (e.g., [4, 2, 2, 1]).
 //Array has only one element or is empty (e.g., [1] or []).
+//Array is already sorted (e.g., [1, 2, 3, 4]).
+//Array contains duplicate elements (e.g., [4, 2, 2, 1]).
 //
+
+func isSorted(s []int) bool {
+	if len(s) <= 1 {
+		return true
+	}
+
+	for i := 0; i < len(s)-1; i++ {
+		if s[i] > s[i+1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+func SortInAscendingOrder(s []int, isSortedFunc func([]int) bool) {
+	if !isSortedFunc(s) {
+		for i := 1; i < len(s); i++ {
+			for j := 0; j < len(s)-1; j++ {
+				if s[j] > s[j+1] {
+					s[j], s[j+1] = s[j+1], s[j]
+				}
+			}
+		}
+	}
+}
+
 //2. Sort Strings by Length
 //
 //Problem: Given an array of strings, sort the strings by their length in ascending order using Bubble Sort.
